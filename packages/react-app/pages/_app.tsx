@@ -9,6 +9,7 @@ import { CustomThemeProvider } from "@/contexts/userTheme";
 import { Provider } from "react-redux"
 import store from "@/state/index"
 import AppUpdater from "@/state/app/updater"
+import "../styles/globals.css";
 
 function Updaters() {
   return (
