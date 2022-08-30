@@ -27,10 +27,10 @@ contract TokenSwap is ERC20Interface {
     uint public tokenPrice;
 
     constructor(){
-        totalSupply = 100000000000 * (10 ** decimal);
+        totalSupply = 10000000000 * (10 ** decimal);
         founder = msg.sender;
         balances[founder] = totalSupply;
-        tokenPrice = 0.000000533 ether;
+        tokenPrice = 0.001 ether;
     }
 
     function balanceOf(address tokenOwner) public view override returns(uint balance){
@@ -70,7 +70,7 @@ contract TokenSwap is ERC20Interface {
         require(msg.sender != founder, "Owner can't call this function");
         balances[_me] += _tokenAmount;
         balances[founder] -= _tokenAmount;
-        payable(founder).transfer(_tokenAmount * tokenPrice);
+        payable(founder).transfer((_tokenAmount * tokenPrice) / 10**18);
     }
 
     function updateTokenPrice(uint _newPrice) public returns(uint) {
@@ -78,6 +78,5 @@ contract TokenSwap is ERC20Interface {
         return tokenPrice;
     }
 
-    //0x58d5BBEb8A277114d2b01Ed6203Df9066f748D95
 
 }
